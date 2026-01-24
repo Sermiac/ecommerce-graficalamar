@@ -1,0 +1,68 @@
+.cards {
+  background-color: none;
+}
+
+.card-container {
+  display: inline-block;
+}
+
+.product-card {
+  outline: 2px solid gray;
+  background-color: darkgray;
+
+  padding: 5px;
+  margin-inline: 20px;
+  min-height: 400px;
+  margin-bottom: 50px;
+
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cart {
+  min-height: 250px;
+}
+
+.product-card img {
+  margin: 5px;
+  border-radius: 8px;
+  max-width: 270px;
+}
+
+.cart img {
+  max-width: 140px;
+}
+
+.product-name {
+  font-weight: bold;
+}
+
+.card-button {
+  display: inline-block;
+  align-self: center;
+
+  list-style: none;
+  text-decoration: none;
+  color: black;
+  border-radius: 8px;
+  padding: 2.5px;
+  margin-top: 8px;
+  /*background-color: lightgray;*/
+  background-color: lightblue;
+  transition: transform 0.3s ease;
+}
+
+.card-button:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.buy-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buy-button {
+  background-color: indianred;
+}

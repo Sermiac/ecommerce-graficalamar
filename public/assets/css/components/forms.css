@@ -1,0 +1,36 @@
+.form {
+  border-radius: 8px;
+  background-color: gray;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  width: 40%;
+  min-width: 200px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.form-info {
+  border-radius: 8px;
+  margin: 10px;
+  background-color: skyblue;
+  color: black;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15);
+  border: 1px solid black;
+  padding: 15px 8px;
+}
+
+.form-info:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #00ffcc;
+}
+
+.form-btn {
+  padding: 5px;
+  grid-column: 1 / -1;
+  justify-self: center;
+}
+
+.no-register-button {
+}
