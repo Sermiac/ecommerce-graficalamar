@@ -1,11 +1,52 @@
 <?php
 
-// Security configs
-if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
-    ini_set('session.cookie_secure', '1');
-}
+
+$isHttps = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off');
+
+
+session_set_cookie_params([
+    'lifetime' => 0,
+    'path' => '/',
+    'domain' => '',
+    'secure' => $isHttps,
+    'httponly' => true,
+    'samesite' => 'Strict'
+]);
+
 ini_set('session.use_strict_mode', '1');
-ini_set('session.cookie_httponly', '1');
+ini_set('session.use_only_cookies', '1');
+
+session_start();
+
+# Expiration due to inactivity
+$inactiveTimeout = 1800;
+if (isset($_SESSION['user_id'])) {
+
+    if (isset($_SESSION['last_activity']) && 
+        time() - $_SESSION['last_activity'] > $inactiveTimeout) {
+
+        session_unset();
+        session_destroy();
+
+        header('Location: /login?expired=1');
+        exit;
+    }
+
+    $_SESSION['last_activity'] = time();
+}
+
+# Expiration after 24h
+$absoluteTimeout = 86400;
+if (!isset($_SESSION['created_at'])) {
+    $_SESSION['created_at'] = time();
+} elseif (time() - $_SESSION['created_at'] > $absoluteTimeout) {
+    session_unset();
+    session_destroy();
+
+    header('Location: /login?expired=1');
+    exit;
+}
+
 
 // Logs and errors
 ini_set('display_errors', '0');

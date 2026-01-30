@@ -4,12 +4,11 @@ import { removeFromCart } from "./cart/remove.js";
 async function main() {
   try {
     const cart = await getCart();
-    if (!cart || cart.length === 0) {
+    if (!cart || cart.items.length === 0) {
       alert("Empieza a agregar productos al carrito!");
       return;
     }
     const container = document.getElementById("cart_items");
-    console.log(cart.items);
 
     cart.items.forEach((p) => {
       const card = document.createElement("div");

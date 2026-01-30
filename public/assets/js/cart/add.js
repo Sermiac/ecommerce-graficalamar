@@ -5,7 +5,6 @@ export async function addToCart(id) {
   });
   const data = await response.json();
   if (data.success) {
-    console.log(data);
     alert("Producto agregado al carrito");
   }
 }

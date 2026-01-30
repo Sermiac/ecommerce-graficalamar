@@ -19,12 +19,16 @@ try {
         ]);
         exit;
     }
-
+    
+    session_unset();
     session_regenerate_id(true);
 
     $_SESSION["user_id"] = $user["id"];
     $_SESSION["name"] = $user["name"];
     $_SESSION['role']    = $user['role'];
+
+    $_SESSION["created_at"]    = time();
+    $_SESSION["last_activity"] = time();
 
     echo json_encode([
         "success" => true,
