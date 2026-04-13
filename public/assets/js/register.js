@@ -1,3 +1,15 @@
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.1 },
+);
+
 document
   .getElementById("registerForm")
   .addEventListener("submit", async (e) => {
@@ -49,3 +61,9 @@ if (logoutBtn) {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".fadeInUp-animation").forEach((el) => {
+    observer.observe(el);
+  });
+});

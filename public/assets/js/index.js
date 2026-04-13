@@ -16,6 +16,18 @@ function loadProducts(category = null) {
     .catch(console.error);
 }
 
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.1 }
+);
+
 function renderProducts(products) {
   const container = document.getElementById("products");
   container.innerHTML = "";
@@ -27,7 +39,7 @@ function renderProducts(products) {
 
   products.forEach((p) => {
     const card = document.createElement("div");
-    card.className = "card-container";
+    card.className = "card-container fadeInUp-animation";
 
     card.innerHTML = `
       <div class="product-card">
@@ -42,8 +54,15 @@ function renderProducts(products) {
     `;
 
     container.appendChild(card);
+    observer.observe(card);
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".fadeInUp-animation").forEach((el) => {
+    observer.observe(el);
+  });
+});
 
 loadProducts(category);
 

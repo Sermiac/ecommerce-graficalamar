@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .cards {
   background-color: none;
 }
@@ -8,7 +14,7 @@
 
 .product-card {
   outline: 2px solid gray;
-  background-color: darkgray;
+  /*background-color: darkgray;*/
 
   padding: 5px;
   margin-inline: 20px;
@@ -17,6 +23,13 @@
 
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  cursor: pointer;
 }
 
 .cart {
@@ -27,6 +40,7 @@
   margin: 5px;
   border-radius: 8px;
   max-width: 270px;
+  max-height: 270px;
 }
 
 .cart img {

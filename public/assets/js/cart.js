@@ -12,7 +12,7 @@ async function main() {
 
     cart.items.forEach((p) => {
       const card = document.createElement("div");
-      card.className = "card-container";
+      card.className = "card-container fadeInUp-animation";
 
       card.innerHTML = `
                   <div class="product-card cart">
@@ -25,11 +25,24 @@ async function main() {
               `;
 
       container.appendChild(card);
+      observer.observe(card);
     });
   } catch (err) {
     console.error(err);
   }
 }
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.1 },
+);
 
 main();
 
@@ -79,3 +92,9 @@ if (buyBtn) {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".fadeInUp-animation").forEach((el) => {
+    observer.observe(el);
+  });
+});
