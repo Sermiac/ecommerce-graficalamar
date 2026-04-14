@@ -90,8 +90,9 @@
   border-radius: 8px;
   padding: 2.5px;
   margin-top: 8px;
-  /*background-color: lightgray;*/
-  background-color: #ff7f7f;
+  /*background-color: #ff7f7f;*/
+  background-color: lightblue;
+
   transition: transform 0.3s ease;
 }
 

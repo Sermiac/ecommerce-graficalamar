@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>GrafiCalamar</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<meta name="description" content="Productos Sublimados GrafiCalamar">
 
 	<link rel="stylesheet" href="/assets/css/index.css">
@@ -60,9 +61,7 @@
 		</form>
 	</main>
 
-	<footer class="footer">
-		<p>copyright GrafiCalamar</p>
-	</footer>
+
 
 	<script src="/assets/js/register.js"></script>
 </body>

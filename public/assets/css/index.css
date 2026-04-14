@@ -34,6 +34,19 @@ body {
   padding-top: 35px;
 }
 
+.announcement {
+  background: lightgray;
+  align-self: center;
+  text-align: center;
+  border-radius: 10px;
+  width: 40%;
+  padding: 5px;
+}
+
+.announcement p {
+  font-size: 20px;
+}
+
 main {
   margin-top: 40px;
   display: flex;
@@ -84,16 +97,21 @@ main {
 
 .footer {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  background-color: #c19de3;
   position: fixed;
   bottom: 0;
-  padding: 5px;
-  width: 100%;
-  max-height: 10px;
+  border-radius: 10px;
+  right: 40px;
+  bottom: 50px;
+  padding: 10px;
+}
+
+.footer img {
+  border-radius: 10px;
+  max-width: 50px;
 }
 
 .nav {
@@ -193,6 +211,21 @@ main {
   opacity: 1;
 }
 
+.total-section {
+  display: flex;
+  justify-content: center;
+  margin-block: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.total-info h3 {
+  font-size: 24px;
+  color: #333;
+}
+
 @media (max-width: 768px) {
   .logo {
     border-radius: 10px;
@@ -202,6 +235,9 @@ main {
   .footer {
     display: flex;
     flex-direction: column;
+  }
+  .footer {
+    right: 15px;
   }
   .nav-list a,
   .nav-list button,
@@ -229,4 +265,37 @@ main {
 
 .fadeInUp-animation.visible {
   animation: 1.5s fadeInUp forwards;
+}
+
+@keyframes pulse {
+  20% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.3);
+  }
+  65% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse-animation {
+  animation-name: pulse;
+  animation-duration: 4s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+.slide {
+  opacity: 0;
+  transform: translatey(10px);
+  transition: all 0.4s ease;
+}
+
+.slide.show {
+  opacity: 1;
+  transform: translatex(0);
 }

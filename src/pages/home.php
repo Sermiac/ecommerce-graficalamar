@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>GrafiCalamar</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<meta name="description" content="Productos Sublimados GrafiCalamar">
 
 	<link rel="stylesheet" href="/assets/css/index.css">
@@ -26,7 +27,7 @@
 	        <ul class="dropdown-menu">
 	          <li><a href="/?category=camisetas" class="category-button">Camisetas</a></li>
 	          <li><a href="/?category=mugs" class="category-button">Mugs</a></li>
-	          <li><a href="/?category=caramañolas" class="category-button">Caramañolas</a></li>
+	          <li><a href="/?category=caramañolas" class="category-button">Termos</a></li>
 	          <li><a href="/?category=agendas" class="category-button">Agendas</a></li>
 	        </ul>
 	      </li>
@@ -42,19 +43,23 @@
 	        <li><a href="/login">Iniciar sesión</a></li>
 	        <li><a href="/register">Registrarse</a></li>
 	      <?php endif; ?>
-
 	    </ul>
 	  </nav>
 	</header>
 		
 
 	<main>
-		<h1 class="title fadeInUp-animation">Tienda</h1>
+
+		<div class="announcement fadeInUp-animation">
+			<p id="announcementText"></p>
+		</div>
+
+		<h1 class="title fadeInUp-animation">Productos</h1>
 
 		<div class="categories fadeInUp-animation">
 			<a href="/?category=camisetas" class="category-button">Camisetas</a>
 			<a href="/?category=mugs" class="category-button">Mugs</a>
-			<a href="/?category=caramañolas" class="category-button">Caramañolas</a>
+			<a href="/?category=caramañolas" class="category-button">Termos</a>
 			<a href="/?category=agendas" class="category-button">Agendas</a>
 		</div>
 
@@ -63,8 +68,10 @@
 
 	</main>
 
-	<footer class="footer">
-		<p>copyright GrafiCalamar</p>
+	<footer class="footer pulse-animation">
+		<a href="http://wa.me/573045508987?text=Hola, quiero saber mas sobre los productos personalizados" target="_blank">
+			<img src="/assets/img/whatsapp.jpeg" alt="whtspp">
+		</a>
 	</footer>
 
 	<script type="module" src="/assets/js/index.js"></script>

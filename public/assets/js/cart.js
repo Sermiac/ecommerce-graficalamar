@@ -20,13 +20,30 @@ async function main() {
                     <p>${p.name}</p>
                     <p>Cantidad: ${p.quantity}</p>
                     <p>Total: $${Number(p.subtotal).toLocaleString("es-CO")}</p>
-                    <button class="removeBtn card-button" data-id="${p.product_id}">Quitar del carrito</a>
+                    <button class="removeBtn card-button" data-id="${p.product_id}">Quitar del carrito</button>
                   </div>
               `;
 
       container.appendChild(card);
       observer.observe(card);
     });
+
+    const totalRes = await fetch("/api/checkout/whatsapp.php");
+    const totalData = await totalRes.json();
+
+    if (totalData.success) {
+      const totalContainer = document.getElementById("cart_total");
+      totalContainer.innerHTML = `
+        <div class="total-info">
+          <h3>Total del pedido: $${Number(totalData.total).toLocaleString("es-CO")}</h3>
+        </div>
+      `;
+
+      const buyBtn = document.getElementById("buyBtn");
+      if (buyBtn) {
+        buyBtn.setAttribute("data-url", totalData.url);
+      }
+    }
   } catch (err) {
     console.error(err);
   }
@@ -47,7 +64,6 @@ const observer = new IntersectionObserver(
 main();
 
 const logoutBtn = document.getElementById("logoutBtn");
-const buyBtn = document.getElementById("buyBtn");
 
 document.addEventListener("click", (e) => {
   if (e.target.closest(".removeBtn")) {
@@ -78,17 +94,15 @@ if (logoutBtn) {
   });
 }
 
-if (buyBtn) {
-  buyBtn.addEventListener("click", async () => {
-    try {
-      const res = await fetch("/api/checkout/whatsapp.php");
-      const data = await res.json();
+const buyBtn = document.getElementById("buyBtn");
 
-      if (data.success) {
-        window.open(data.url, "_blank");
-      }
-    } catch (err) {
-      console.log("Error: ", err);
+if (buyBtn) {
+  buyBtn.addEventListener("click", () => {
+    const url = buyBtn.getAttribute("data-url");
+    if (url) {
+      window.open(url, "_blank");
+    } else {
+      console.error("URL de WhatsApp no disponible");
     }
   });
 }

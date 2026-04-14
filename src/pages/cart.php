@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>GrafiCalamar</title>
+	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<meta name="description" content="Productos Sublimados GrafiCalamar">
 
 	<link rel="stylesheet" href="/assets/css/index.css">
@@ -55,9 +56,12 @@
 		<section id="cart_items" class="cards">
 		</section>
 
+		<section id="cart_total" class="total-section fadeInUp-animation">
+		</section>
+
 		<?php if (!empty($_SESSION['cart']) || !empty($_SESSION['user_id'])): ?>
 			<div class="buy-div">
-				<button class="card-button buy-button" id="buyBtn">Comprar</a>
+				<button class="card-button buy-button fadeInUp-animation" id="buyBtn">Comprar</button>
 			</div>
 		<?php else: ?>
 			<div></div>
@@ -65,8 +69,10 @@
 
 	</main>
 
-	<footer class="footer">
-		<p>copyright GrafiCalamar</p>
+	<footer class="footer pulse-animation">
+		<a href="http://wa.me/573045508987?text=Hola, quiero saber mas sobre los productos personalizados" target="_blank">
+			<img src="/assets/img/whatsapp.jpeg" alt="whtspp">
+		</a>
 	</footer>
 
 	<script type="module" src="/assets/js/cart.js"></script>

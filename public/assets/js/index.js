@@ -2,6 +2,31 @@ import { addToCart } from "./cart/add.js";
 
 const params = new URLSearchParams(window.location.search);
 const category = params.get("category");
+const announcementText = document.getElementById("announcementText");
+
+let announcementNum = 0;
+let messages = [
+  "Personaliza tu producto favorito.",
+  "Impresión digital de alta calidad.",
+  "Ideal para regalos originales, cumpleaños y detalles corporativos.",
+];
+
+function announcementAnim() {
+  announcementText.classList.remove("show");
+
+  setTimeout(() => {
+    announcementNum = (announcementNum + 1) % messages.length;
+
+    announcementText.textContent = messages[announcementNum];
+
+    announcementText.classList.add("show");
+  }, 400);
+}
+
+announcementText.textContent = messages[announcementNum];
+announcementText.classList.add("slide", "show");
+
+setInterval(announcementAnim, 4000);
 
 function loadProducts(category = null) {
   let url = "/api/get_products.php";
@@ -25,7 +50,7 @@ const observer = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.1 }
+  { threshold: 0.1 },
 );
 
 function renderProducts(products) {

@@ -64,7 +64,7 @@ class checkout
         }
 
 		// message
-		$mensaje = "Hola, quiero comprar:\n\n";
+		$mensaje = "Hola, me gustaria ordernar:\n\n";
 		$total = 0;
 
 		foreach ($cart as $row) {
