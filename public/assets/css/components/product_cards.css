@@ -5,26 +5,44 @@
 }
 
 .cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
   background-color: none;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 10px;
+  /*box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);*/
 }
 
 .card-container {
-  display: inline-block;
+  display: block;
 }
 
 .product-card {
-  outline: 2px solid gray;
   /*background-color: darkgray;*/
 
-  padding: 5px;
-  margin-inline: 20px;
-  min-height: 400px;
+  padding: 15px;
+  width: 300px;
+  max-width: 100%;
+  min-height: 450px;
   margin-bottom: 50px;
 
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 
   transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .cards {
+    justify-content: center;
+  }
 }
 
 .product-card:hover {
@@ -37,23 +55,34 @@
 }
 
 .product-card img {
-  margin: 5px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
   border-radius: 8px;
-  max-width: 270px;
-  max-height: 270px;
+  margin-bottom: 10px;
 }
 
 .cart img {
-  max-width: 140px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .product-name {
   font-weight: bold;
 }
 
+.product-description {
+  white-space: pre-line;
+}
+
 .card-button {
   display: inline-block;
-  align-self: center;
+  align-self: flex-start;
 
   list-style: none;
   text-decoration: none;
@@ -62,7 +91,7 @@
   padding: 2.5px;
   margin-top: 8px;
   /*background-color: lightgray;*/
-  background-color: lightblue;
+  background-color: #ff7f7f;
   transition: transform 0.3s ease;
 }
 
@@ -78,5 +107,13 @@
 }
 
 .buy-button {
-  background-color: indianred;
+  padding: 10px 20px;
+  grid-column: 1 / -1;
+  justify-self: center;
+  background-color: lightblue;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.2s;
 }

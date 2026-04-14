@@ -45,8 +45,8 @@ function renderProducts(products) {
       <div class="product-card">
         <img src="/assets/img/${p.image}" alt="${p.name}">
         <p class="product-name">${p.name}</p>
-        <p>${p.description}</p>
-        <p>$ ${p.price}</p>
+        <p class="product-description">${p.description}</p>
+        <p>$ ${Number(p.price).toLocaleString("es-CO")}</p>
         <button class="card-button" data-id="${p.id}">
           Agregar al carrito
         </button>

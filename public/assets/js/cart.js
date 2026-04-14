@@ -19,7 +19,7 @@ async function main() {
                     <img src="/assets/img/${p.image}" alt="${p.name}">
                     <p>${p.name}</p>
                     <p>Cantidad: ${p.quantity}</p>
-                    <p>Total: $${p.subtotal}</p>
+                    <p>Total: $${Number(p.subtotal).toLocaleString("es-CO")}</p>
                     <button class="removeBtn card-button" data-id="${p.product_id}">Quitar del carrito</a>
                   </div>
               `;
