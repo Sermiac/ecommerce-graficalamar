@@ -28,18 +28,17 @@ announcementText.classList.add("slide", "show");
 
 setInterval(announcementAnim, 4000);
 
-function loadProducts(category = null) {
-  let url = "/api/get_products.php";
+async function initWhatsapp() {
+  const whatsappBtn = document.getElementById("whatsapp");
+  if (!whatsappBtn) return;
 
-  if (category) {
-    url += `?category=${encodeURIComponent(category)}`;
-  }
+  const res = await fetch("/api/contact.php");
+  const data = await res.json();
 
-  fetch(url)
-    .then((res) => res.json())
-    .then(renderProducts)
-    .catch(console.error);
+  whatsappBtn.href = data.url;
 }
+
+initWhatsapp();
 
 const observer = new IntersectionObserver(
   (entries) => {
@@ -52,6 +51,19 @@ const observer = new IntersectionObserver(
   },
   { threshold: 0.1 },
 );
+
+function loadProducts(category = null) {
+  let url = "/api/get_products.php";
+
+  if (category) {
+    url += `?category=${encodeURIComponent(category)}`;
+  }
+
+  fetch(url)
+    .then((res) => res.json())
+    .then(renderProducts)
+    .catch(console.error);
+}
 
 function renderProducts(products) {
   const container = document.getElementById("products");
@@ -68,13 +80,17 @@ function renderProducts(products) {
 
     card.innerHTML = `
       <div class="product-card">
+      <a href="/product-details?id=${p.id}" class="card-link">
         <img src="/assets/img/${p.image}" alt="${p.name}">
         <p class="product-name">${p.name}</p>
         <p class="product-description">${p.description}</p>
         <p>$ ${Number(p.price).toLocaleString("es-CO")}</p>
+      </a>
+      
         <button class="card-button" data-id="${p.id}">
           Agregar al carrito
         </button>
+
       </div>
     `;
 
@@ -82,12 +98,6 @@ function renderProducts(products) {
     observer.observe(card);
   });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".fadeInUp-animation").forEach((el) => {
-    observer.observe(el);
-  });
-});
 
 loadProducts(category);
 
@@ -117,3 +127,9 @@ if (logoutBtn) {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".fadeInUp-animation").forEach((el) => {
+    observer.observe(el);
+  });
+});

@@ -102,6 +102,99 @@ class user_service
         }
     }
 
+    public static function getProfile($userId) {
+        global $conn;
+        $stmt = $conn->prepare("
+            SELECT 
+                name,
+                email, 
+                phone, 
+                address
+            FROM users
+            WHERE id = ?
+        ");
+        if (!$stmt) {
+            return null;
+            }
+
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+
+        $stmt->close();
+
+        return $user;
+    }
+
+public static function updateProfile($data, $userId)
+{
+    global $conn;
+
+    $required = ['name','email','phone','address'];
+
+    foreach ($required as $field) {
+        if (empty($data[$field])) {
+            throw new Exception("Falta el campo $field");
+        }
+    }
+
+    if (!empty($data['password'])) {
+
+        if ($data['password'] !== $data['confirm_password']) {
+            throw new Exception('Las contraseñas no coinciden');
+        }
+
+        $hash = password_hash($data['password'], PASSWORD_DEFAULT);
+
+        $stmt = $conn->prepare(
+            "UPDATE users 
+             SET name = ?, email = ?, password = ?, phone = ?, address = ?
+             WHERE id = ?"
+        );
+
+        if (!$stmt) {
+            throw new Exception($conn->error);
+        }
+
+        $stmt->bind_param(
+            'sssssi',
+            $data["name"],
+            $data["email"],
+            $hash,
+            $data["phone"],
+            $data["address"],
+            $userId
+        );
+
+    } else {
+
+        $stmt = $conn->prepare(
+            "UPDATE users 
+             SET name = ?, email = ?, phone = ?, address = ?
+             WHERE id = ?"
+        );
+
+        if (!$stmt) {
+            throw new Exception($conn->error);
+        }
+
+        $stmt->bind_param(
+            'ssssi',
+            $data["name"],
+            $data["email"],
+            $data["phone"],
+            $data["address"],
+            $userId
+        );
+    }
+
+    $stmt->execute();
+    $stmt->close();
+}
+
+
     public static function logout() {
         session_start(); 
         unset($_SESSION['user_id']);

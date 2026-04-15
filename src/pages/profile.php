@@ -6,21 +6,11 @@
 	<title>GrafiCalamar</title>
 	<link rel="icon" type="image/x-icon" href="favicon.ico">
 	<meta name="description" content="Productos Sublimados GrafiCalamar">
-
+	
 	<link rel="stylesheet" href="/assets/css/index.css">
-	<link rel="stylesheet" href="/assets/css/components/product_cards.css">
+	<link rel="stylesheet" href="/assets/css/components/forms.css">
 </head>
 <body>
-
-		<div class="announcement" style="background: #fff6ed;">
-			<p id="announcementText2" style="color: black;">Pregunta por nuestros paquetes de regalos para cualquier ocasión.</p>
-			<p style="color: red;">20% off primera compra!</p>
-		</div>
-
-		<div class="announcement">
-			<p id="announcementText"></p>
-		</div>
-
 	<header class="header">
 	  <a href="/">
     	<picture>
@@ -36,7 +26,7 @@
 	        <ul class="dropdown-menu">
 	          <li><a href="/?category=camisetas" class="category-button">Camisetas</a></li>
 	          <li><a href="/?category=mugs" class="category-button">Mugs</a></li>
-	          <li><a href="/?category=caramañolas" class="category-button">Termos</a></li>
+	          <li><a href="/?category=caramañolas" class="category-button">Caramañolas</a></li>
 	          <li><a href="/?category=agendas" class="category-button">Agendas</a></li>
 	        </ul>
 	      </li>
@@ -55,31 +45,43 @@
 	    </ul>
 	  </nav>
 	</header>
-		
 
 	<main>
+		<h1 class="title fadeInUp-animation">Perfil</h1>
+		<div class="grid">
+			<form id="profileData" class="form fadeInUp-animation" style="width:60%;">
+				<h2 class="subtitle">Nombre Completo</h2>
+				<input class="form-info" type="text" name="name" placeholder="Nombre" required>
 
-		<h1 class="title fadeInUp-animation">Productos</h1>
 
-		<div class="categories fadeInUp-animation">
-			<a href="/?category=camisetas" class="category-button">Camisetas</a>
-			<a href="/?category=mugs" class="category-button">Mugs</a>
-			<a href="/?category=caramañolas" class="category-button">Termos</a>
-			<a href="/?category=agendas" class="category-button">Agendas</a>
+				<h2 class="subtitle">Correo</h2>
+				<input class="form-info" type="text" name="email" placeholder="Correo" required>
+
+
+				<h2 class="subtitle">Teléfono</h2>
+				<input class="form-info" type="text" name="phone" placeholder="Teléfono" required>
+
+
+				<h2 class="subtitle">Dirección</h2>
+				<input class="form-info" type="text" name="address" placeholder="Dirección" required>
+
+
+				<h2 class="subtitle">Contraseña</h2>
+				<input class="form-info" type="password" name="password" id="password" placeholder="Contraseña">
+
+				<h2 class="subtitle">Confirme la contraseña</h2>
+				<input class="form-info" type="password" name="confirm_password" id="confirm_password" placeholder="Contraseña">
+
+				<input class="form-btn" type="submit" name="submit" value="Actualizar">
+
+				<p id="error" class="error"></p>
+			</form>
 		</div>
-
-		<section id="products" class="cards">
-		</section>
 
 	</main>
 
-	<footer class="footer pulse-animation">
-		<a href="/" target="_blank" id="whatsapp">
-			<img src="/assets/img/whatsapp.jpeg" alt="whtspp">
-		</a>
-	</footer>
 
-	<script type="module" src="/assets/js/index.js"></script>
-	
+
+	<script src="/assets/js/profile.js"></script>
 </body>
 </html>

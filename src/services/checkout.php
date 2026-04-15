@@ -9,7 +9,7 @@ $phone = $env['WHATSAPP'];
 
 class checkout
 {
-	public static function whatsapp()
+	public static function buyWhatsapp()
 	{
 
 		global $conn;

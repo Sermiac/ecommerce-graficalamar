@@ -69,6 +69,14 @@ switch ($path) {
     case '/cart':
         require __DIR__ . '/../src/pages/cart.php';
         break;
+        
+    case '/profile':
+        require __DIR__ . '/../src/pages/profile.php';
+        break;
+
+    case '/product-details':
+        require __DIR__ . '/../src/pages/product-details.php';
+        break;
 
 
     case '/':
