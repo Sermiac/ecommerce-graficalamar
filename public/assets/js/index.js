@@ -11,6 +11,31 @@ let messages = [
   "Ideal para regalos originales, cumpleaños y detalles corporativos.",
 ];
 
+let current = 1;
+setInterval(() => {
+  const b1 = document.getElementById("banner1");
+  const b2 = document.getElementById("banner2");
+  if (current === 1) {
+    b1.style.opacity = "0";
+    setTimeout(() => {
+      b1.style.display = "none";
+      b2.style.display = "";
+      b2.style.opacity = "0";
+      requestAnimationFrame(() => (b2.style.opacity = "1"));
+    }, 400);
+    current = 2;
+  } else {
+    b2.style.opacity = "0";
+    setTimeout(() => {
+      b2.style.display = "none";
+      b1.style.display = "";
+      b1.style.opacity = "0";
+      requestAnimationFrame(() => (b1.style.opacity = "1"));
+    }, 400);
+    current = 1;
+  }
+}, 8000);
+
 function announcementAnim() {
   announcementText.classList.remove("show");
 

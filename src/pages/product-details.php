@@ -12,47 +12,27 @@
 	<link rel="stylesheet" href="/assets/css/product-details.css">
 </head>
 <body>
-	<header class="header">
-	  <a href="/">
-    	<picture>
-      		<source class="logo" srcset="assets/img/GrafiCalamar_logoMobile.png" media="(max-width:768px)">
-      		<img class="logo" src="assets/img/GrafiCalamar_logo.png" alt="Logo">
-		</picture>
-	  </a>
 
-	  <nav class="nav">
-	  	<ul class="nav-category">
-	      <li class="dropdown">
-	        <a href="#">Categorías</a>
-	        <ul class="dropdown-menu">
-	          <li><a href="/?category=camisetas" class="category-button">Camisetas</a></li>
-	          <li><a href="/?category=mugs" class="category-button">Mugs</a></li>
-	          <li><a href="/?category=caramañolas" class="category-button">Termos</a></li>
-	          <li><a href="/?category=agendas" class="category-button">Agendas</a></li>
-	        </ul>
-	      </li>
-	  	</ul>
+		<div class="announcement" style="background: #fff6ed;">
+			<p id="announcementText2" style="color: black;">Pregunta por nuestros paquetes de regalos. Pensados para cualquier ocasión.</p>
+			<p style="color: red;">20% off primera compra!</p>
+		</div>
 
-	    <ul class="nav-list">
-	      <li><a href="/cart">Carrito</a></li>
+		<div class="announcement">
+			<p id="announcementText"></p>
+		</div>
 
-	      <?php if (isset($_SESSION['user_id'])): ?>
-	        <li><a href="/profile">Perfil</a></li>
-	        <li><button id="logoutBtn">Cerrar sesión</button></li>
-	      <?php else: ?>
-	        <li><a href="/login">Iniciar sesión</a></li>
-	        <li><a href="/register">Registrarse</a></li>
-	      <?php endif; ?>
-	    </ul>
-	  </nav>
-	</header>
+	<?php include __DIR__ . '/components/header.php'; ?>
 
 
 
 	<main class="product-container">
 		<section class="product-details fadeInUp-animation">
 			<div class="product-images">
-				<img src="/assets/img/camiseta.jpg" alt="Camiseta Blanca" class="main-image">
+				<img src="" alt="" class="main-image">
+				<img src="" alt="" class="main-image">
+				<img src="" alt="" class="main-image">
+				<img src="" alt="" class="main-image">
 			</div>
 			<div class="product-info">
 				<h1 class="product-title">Cargando...</h1>

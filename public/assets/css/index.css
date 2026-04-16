@@ -51,6 +51,11 @@ body {
   color: white;
 }
 
+#banner1,
+#banner2 {
+  transition: opacity 0.4s ease;
+}
+
 main {
   display: flex;
   flex-direction: column;

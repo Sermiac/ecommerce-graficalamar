@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2027 GrafiCalamar, Todos los derechos reservados, Desarrollado por <a href="https://sermiac.github.io/" target="_blank">Sermiac</a></p>
+        <p>&copy; 2026 GrafiCalamar, Todos los derechos reservados, Desarrollado por <a href="https://sermiac.github.io/" target="_blank">Sermiac</a></p>
     </div>
 </footer>
 

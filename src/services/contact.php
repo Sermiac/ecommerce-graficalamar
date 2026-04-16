@@ -15,7 +15,8 @@ class contact
 		$telefono = $phone;
 		$url = "https://wa.me/$telefono";
 		return [
-            "url" => $url
+            "url" => $url,
+            "phone" => $telefono
         ];
 	}
 }

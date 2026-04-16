@@ -1,6 +1,32 @@
 import { getCart } from "./cart/get.js";
 import { removeFromCart } from "./cart/remove.js";
 
+const announcementText = document.getElementById("announcementText");
+
+let announcementNum = 0;
+let messages = [
+  "Personaliza tu producto favorito.",
+  "Impresión digital de alta calidad.",
+  "Ideal para regalos originales, cumpleaños y detalles corporativos.",
+];
+
+function announcementAnim() {
+  announcementText.classList.remove("show");
+
+  setTimeout(() => {
+    announcementNum = (announcementNum + 1) % messages.length;
+
+    announcementText.textContent = messages[announcementNum];
+
+    announcementText.classList.add("show");
+  }, 400);
+}
+
+announcementText.textContent = messages[announcementNum];
+announcementText.classList.add("slide", "show");
+
+setInterval(announcementAnim, 4000);
+
 async function main() {
   try {
     const cart = await getCart();

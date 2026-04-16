@@ -1,5 +1,31 @@
 import { addToCart } from "./cart/add.js";
 
+const announcementText = document.getElementById("announcementText");
+
+let announcementNum = 0;
+let messages = [
+  "Personaliza tu producto favorito.",
+  "Impresión digital de alta calidad.",
+  "Ideal para regalos originales, cumpleaños y detalles corporativos.",
+];
+
+function announcementAnim() {
+  announcementText.classList.remove("show");
+
+  setTimeout(() => {
+    announcementNum = (announcementNum + 1) % messages.length;
+
+    announcementText.textContent = messages[announcementNum];
+
+    announcementText.classList.add("show");
+  }, 400);
+}
+
+announcementText.textContent = messages[announcementNum];
+announcementText.classList.add("slide", "show");
+
+setInterval(announcementAnim, 4000);
+
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 
@@ -57,14 +83,36 @@ async function getProduct() {
 
 function renderProduct(product) {
   if (!product) return;
-  const imageEl = document.querySelector(".main-image");
+  const imageEls = document.querySelectorAll(".main-image");
   const titleEl = document.querySelector(".product-title");
   const priceEl = document.querySelector(".product-price");
   const descriptionEl = document.querySelector(".product-description");
 
-  if (imageEl) {
-    imageEl.src = `/assets/img/${product.image}`;
-    imageEl.alt = product.name;
+  if (imageEls.length > 0) {
+    const baseImage = product.image;
+    const dotIndex = baseImage.lastIndexOf(".");
+    const name = baseImage.substring(0, dotIndex);
+    const ext = baseImage.substring(dotIndex);
+
+    imageEls[0].src = `/assets/img/${baseImage}`;
+    imageEls[0].alt = product.name;
+    imageEls[0].onerror = () => (imageEls[0].style.display = "none");
+
+    if (imageEls[1]) {
+      imageEls[1].src = `/assets/img/${name}2${ext}`;
+      imageEls[1].alt = `${product.name} 2`;
+      imageEls[1].onerror = () => (imageEls[1].style.display = "none");
+    }
+    if (imageEls[2]) {
+      imageEls[2].src = `/assets/img/${name}3${ext}`;
+      imageEls[2].alt = `${product.name} 3`;
+      imageEls[2].onerror = () => (imageEls[2].style.display = "none");
+    }
+    if (imageEls[3]) {
+      imageEls[3].src = `/assets/img/${name}4${ext}`;
+      imageEls[3].alt = `${product.name} 4`;
+      imageEls[3].onerror = () => (imageEls[3].style.display = "none");
+    }
   }
   if (titleEl) titleEl.textContent = product.name;
   if (priceEl)

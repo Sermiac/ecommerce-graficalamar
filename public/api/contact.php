@@ -16,7 +16,8 @@ try {
 
     echo json_encode([
         "success" => true,
-        "url" => $wtsapp['url']
+        "url" => $wtsapp['url'],
+        "phone" => $wtsapp['phone']
     ]);
 
 } catch (Exception $e) {

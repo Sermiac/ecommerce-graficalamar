@@ -13,53 +13,30 @@
 <body>
 
 		<div class="announcement" style="background: #fff6ed;">
-			<p id="announcementText2" style="color: black;">Pregunta por nuestros paquetes de regalos para cualquier ocasión.</p>
+			<p id="announcementText2" style="color: black;">Pregunta por nuestros paquetes de regalos. Pensados para cualquier ocasión.</p>
 			<p style="color: red;">20% off primera compra!</p>
 		</div>
 
 		<div class="announcement">
 			<p id="announcementText"></p>
-		</div>
+		</div> 
 
-	<header class="header">
-	  <a href="/">
-    	<picture>
-      		<source class="logo" srcset="assets/img/GrafiCalamar_logoMobile.png" media="(max-width:768px)">
-      		<img class="logo" src="assets/img/GrafiCalamar_logo.png" alt="Logo">
-		</picture>
-	  </a>
+	<?php include __DIR__ . '/components/header.php'; ?>
 
-	  <nav class="nav">
-	  	<ul class="nav-category">
-	      <li class="dropdown">
-	        <a href="#">Categorías</a>
-	        <ul class="dropdown-menu">
-	          <li><a href="/?category=camisetas" class="category-button">Camisetas</a></li>
-	          <li><a href="/?category=mugs" class="category-button">Mugs</a></li>
-	          <li><a href="/?category=caramañolas" class="category-button">Termos</a></li>
-	          <li><a href="/?category=agendas" class="category-button">Agendas</a></li>
-	        </ul>
-	      </li>
-	  	</ul>
 
-	    <ul class="nav-list">
-	      <li><a href="/cart">Carrito</a></li>
-
-	      <?php if (isset($_SESSION['user_id'])): ?>
-	        <li><a href="/profile">Perfil</a></li>
-	        <li><button id="logoutBtn">Cerrar sesión</button></li>
-	      <?php else: ?>
-	        <li><a href="/login">Iniciar sesión</a></li>
-	        <li><a href="/register">Registrarse</a></li>
-	      <?php endif; ?>
-	    </ul>
-	  </nav>
-	</header>
+	<div class="banner-container" id="banner-container">
+	  <div id="banner1">
+	    <?php include __DIR__ . '/components/horizontal-banner.php'; ?>
+	  </div>
+	  <div id="banner2" style="display:none">
+	    <?php include __DIR__ . '/components/horizontal-banner2.php'; ?>
+	  </div>
+	</div>
 		
 
 	<main>
 
-		<h1 class="title fadeInUp-animation">Productos</h1>
+		<h1 class="title fadeInUp-animation">Catálogo</h1>
 
 		<div class="categories fadeInUp-animation">
 			<a href="/?category=camisetas" class="category-button">Camisetas</a>
