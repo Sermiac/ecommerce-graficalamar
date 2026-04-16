@@ -9,7 +9,7 @@ $phone = $env['WHATSAPP'];
 
 class checkout
 {
-	public static function whatsapp()
+	public static function buyWhatsapp()
 	{
 
 		global $conn;
@@ -64,7 +64,7 @@ class checkout
         }
 
 		// message
-		$mensaje = "Hola, quiero comprar:\n\n";
+		$mensaje = "Hola, me gustaria ordernar:\n\n";
 		$total = 0;
 
 		foreach ($cart as $row) {

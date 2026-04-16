@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
 header('Content-Type: application/json');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
@@ -7,17 +9,14 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
     exit;
 }
 
-require_once __DIR__ . '/../../../src/services/checkout.php';
-
-session_start();
+require_once __DIR__ . '/../../src/services/contact.php';
 
 try {
-    $wtsapp = checkout::buyWhatsapp();
+    $wtsapp = contact::whatsapp();
 
     echo json_encode([
         "success" => true,
-        "url" => $wtsapp['url'],
-        "total" => $wtsapp['total']
+        "url" => $wtsapp['url']
     ]);
 
 } catch (Exception $e) {

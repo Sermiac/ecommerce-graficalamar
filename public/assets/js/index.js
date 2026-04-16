@@ -2,6 +2,59 @@ import { addToCart } from "./cart/add.js";
 
 const params = new URLSearchParams(window.location.search);
 const category = params.get("category");
+const announcementText = document.getElementById("announcementText");
+
+let announcementNum = 0;
+let messages = [
+  "Personaliza tu producto favorito.",
+  "Impresión digital de alta calidad.",
+  "Ideal para regalos originales, cumpleaños y detalles corporativos.",
+];
+
+function announcementAnim() {
+  announcementText.classList.remove("show");
+
+  setTimeout(() => {
+    announcementNum = (announcementNum + 1) % messages.length;
+
+    announcementText.textContent = messages[announcementNum];
+
+    announcementText.classList.add("show");
+  }, 400);
+}
+
+announcementText.textContent = messages[announcementNum];
+announcementText.classList.add("slide", "show");
+
+setInterval(announcementAnim, 4000);
+
+async function initWhatsapp() {
+  const whatsappBtn = document.getElementById("whatsapp");
+  if (!whatsappBtn) return;
+
+  const res = await fetch("/api/contact.php");
+  const data = await res.json();
+
+  let url =
+    data.url +
+    "?text=Hola, quiero saber mas sobre los productos personalizados";
+
+  whatsappBtn.href = url;
+}
+
+initWhatsapp();
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
+        observer.unobserve(entry.target);
+      }
+    });
+  },
+  { threshold: 0.1 },
+);
 
 function loadProducts(category = null) {
   let url = "/api/get_products.php";
@@ -27,21 +80,26 @@ function renderProducts(products) {
 
   products.forEach((p) => {
     const card = document.createElement("div");
-    card.className = "card-container";
+    card.className = "card-container fadeInUp-animation";
 
     card.innerHTML = `
       <div class="product-card">
+      <a href="/product-details?id=${p.id}" class="card-link">
         <img src="/assets/img/${p.image}" alt="${p.name}">
+      </a>
         <p class="product-name">${p.name}</p>
-        <p>${p.description}</p>
-        <p>$ ${p.price}</p>
+        <p class="product-description">${p.description}</p>
+        <p>$ ${Number(p.price).toLocaleString("es-CO")}</p>
+      
         <button class="card-button" data-id="${p.id}">
           Agregar al carrito
         </button>
+
       </div>
     `;
 
     container.appendChild(card);
+    observer.observe(card);
   });
 }
 
@@ -73,3 +131,9 @@ if (logoutBtn) {
     }
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".fadeInUp-animation").forEach((el) => {
+    observer.observe(el);
+  });
+});
