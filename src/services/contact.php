@@ -13,8 +13,7 @@ class contact
 		global $phone;
 
 		$telefono = $phone;
-		$mensaje = "Hola, quiero saber mas sobre los productos personalizados";
-		$url = "https://wa.me/$telefono?text=" . urlencode($mensaje);
+		$url = "https://wa.me/$telefono";
 		return [
             "url" => $url
         ];

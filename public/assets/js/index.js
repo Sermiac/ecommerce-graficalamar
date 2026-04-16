@@ -35,7 +35,11 @@ async function initWhatsapp() {
   const res = await fetch("/api/contact.php");
   const data = await res.json();
 
-  whatsappBtn.href = data.url;
+  let url =
+    data.url +
+    "?text=Hola, quiero saber mas sobre los productos personalizados";
+
+  whatsappBtn.href = url;
 }
 
 initWhatsapp();

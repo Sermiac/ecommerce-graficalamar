@@ -61,6 +61,8 @@
 		</form>
 	</main>
 
+	<?php include __DIR__ . '/components/footer.php'; ?>
+
 
 
 	<script src="/assets/js/register.js"></script>

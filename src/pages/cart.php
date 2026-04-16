@@ -75,6 +75,8 @@
 		</a>
 	</footer>
 
+	<?php include __DIR__ . '/components/footer.php'; ?>
+
 	<script type="module" src="/assets/js/cart.js"></script>
 	
 </body>
