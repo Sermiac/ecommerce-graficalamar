@@ -14,7 +14,7 @@ if (!isset($_SESSION['user_id'])) {
     }
 
     $productId = (int) ($_POST['product_id'] ?? 0);
-    $amount = 1;
+    $amount = (int) ($_POST['quantity'] ?? 1);
 
     if (isset($_SESSION['cart'][$productId])) {
         $_SESSION['cart'][$productId] += $amount;

@@ -26,4 +26,24 @@ class products {
 
         return $result->fetch_all(MYSQLI_ASSOC);
     }
+
+    public static function getById($Id){
+        global $conn;
+
+        $stmt = $conn->prepare("
+                    SELECT id, name, description, price, image, category
+            FROM products
+            WHERE id = ?
+            ");
+
+        $stmt->bind_param("s", $Id);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $product = $result->fetch_assoc();
+
+        $stmt->close();
+
+        return $product;
+    }
 }

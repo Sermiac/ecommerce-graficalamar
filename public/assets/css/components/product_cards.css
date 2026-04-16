@@ -51,11 +51,6 @@
   }
 }
 
-.product-card:hover {
-  transform: scale(1.05);
-  cursor: pointer;
-}
-
 .cart {
   min-height: 250px;
 }
@@ -69,6 +64,11 @@
   margin-bottom: 10px;
 }
 
+.product-card:has(img:hover) {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
 .cart img {
   width: 100%;
   height: auto;
@@ -76,6 +76,10 @@
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 10px;
+}
+
+.product-card p {
+  cursor: auto;
 }
 
 .product-name {

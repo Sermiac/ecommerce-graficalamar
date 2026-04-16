@@ -82,10 +82,10 @@ function renderProducts(products) {
       <div class="product-card">
       <a href="/product-details?id=${p.id}" class="card-link">
         <img src="/assets/img/${p.image}" alt="${p.name}">
+      </a>
         <p class="product-name">${p.name}</p>
         <p class="product-description">${p.description}</p>
         <p>$ ${Number(p.price).toLocaleString("es-CO")}</p>
-      </a>
       
         <button class="card-button" data-id="${p.id}">
           Agregar al carrito

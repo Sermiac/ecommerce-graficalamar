@@ -70,7 +70,7 @@
 	</main>
 
 	<footer class="footer pulse-animation">
-		<a href="http://wa.me/573045508987?text=Hola, quiero saber mas sobre los productos personalizados" target="_blank">
+		<a href="/" target="_blank" id="whatsapp">
 			<img src="/assets/img/whatsapp.jpeg" alt="whtspp">
 		</a>
 	</footer>

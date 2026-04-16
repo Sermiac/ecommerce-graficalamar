@@ -18,11 +18,12 @@ async function main() {
                   <div class="product-card cart">
                   <a href="/product-details?id=${p.product_id}" class="card-link">
                     <img src="/assets/img/${p.image}" alt="${p.name}">
-                    <p>${p.name}</p>
-                    <p>Cantidad: ${p.quantity}</p>
-                    <p>Total: $${Number(p.subtotal).toLocaleString("es-CO")}</p>
-                    <button class="removeBtn card-button" data-id="${p.product_id}">Quitar del carrito</button>
                   </a>
+                    <p>${p.name}</p>
+                    <p>Cantidad: ${p.quantity} <button class="decreaseBtn" data-id="${p.product_id}" style="border: none; background: none; cursor: pointer;">▼</button></p>
+                    <p>Total: $${Number(p.subtotal).toLocaleString("es-CO")}</p>
+
+                  <button class="removeBtn card-button" data-id="${p.product_id}" data-qty="${p.quantity}">Quitar del carrito</button>
                   </div>
               `;
 
@@ -77,18 +78,34 @@ const observer = new IntersectionObserver(
 
 main();
 
-const logoutBtn = document.getElementById("logoutBtn");
-
 document.addEventListener("click", (e) => {
-  if (e.target.closest(".removeBtn")) {
+  const decreaseBtn = e.target.closest(".decreaseBtn");
+  if (decreaseBtn) {
+    e.preventDefault();
     try {
-      const btn = e.target.closest(".removeBtn");
-      removeFromCart(btn.dataset.id);
+      removeFromCart(decreaseBtn.dataset.id, 1);
+      window.location.href = "/cart";
     } catch (err) {
-      console.log("Error: ", err);
+      console.log("Error decreasing quantity: ", err);
     }
+    return;
+  }
+
+  const btn = e.target.closest(".removeBtn");
+  if (!btn) return;
+
+  try {
+    const qty = btn.dataset.qty || 1;
+
+    removeFromCart(btn.dataset.id, qty);
+    alert("Producto eliminado del carrito");
+    window.location.href = "/cart";
+  } catch (err) {
+    console.log("Error removing product: ", err);
   }
 });
+
+const logoutBtn = document.getElementById("logoutBtn");
 
 if (logoutBtn) {
   logoutBtn.addEventListener("click", async () => {

@@ -15,7 +15,7 @@ if (!isset($_SESSION['user_id'])) {
     }
 
     $productId = (int) ($_POST['product_id'] ?? 0);
-    $amount = 1;
+    $amount = (int) ($_POST['quantity'] ?? 1);
 
     if ($productId <= 0) {
         echo json_encode(['success' => false, 'error' => 'Producto inválido']);
