@@ -46,12 +46,7 @@
 
 	</main>
 
-	<footer class="footer pulse-animation">
-		<a href="/" target="_blank" id="whatsapp">
-			<img src="/assets/img/whatsapp.jpeg" alt="whtspp">
-		</a>
-	</footer>
-
+	<?php include __DIR__ . '/components/whatsapp.php'; ?>
 	<?php include __DIR__ . '/components/footer.php'; ?>
 
 	<script type="module" src="/assets/js/cart.js"></script>

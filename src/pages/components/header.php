@@ -32,3 +32,4 @@
 	    </ul>
 	  </nav>
 	</header>
+	<?php include __DIR__ . '/demo-message.php'; ?>

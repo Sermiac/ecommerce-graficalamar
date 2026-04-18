@@ -16,6 +16,7 @@ class checkout
         global $phone;
 
 		$cart = [];
+        $user_data = [];
         if (!empty($_SESSION['cart'])) {
             $items = $_SESSION['cart'];
 
@@ -39,6 +40,7 @@ class checkout
 
     		$userId = $_SESSION['user_id'];
 
+            // Get cart data
 	        $stmt = $conn->prepare("
 	            SELECT 
 	            	p.name, 
@@ -56,6 +58,21 @@ class checkout
             while ($row = $result->fetch_assoc()) {
                 $cart[] = $row;
             }
+            // Get user data
+            $stmt = $conn->prepare("
+                SELECT 
+                    name,
+                    address,
+                    email,
+                    phone
+                FROM users
+                WHERE id = ?
+            ");
+            $stmt->bind_param("i", $userId);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            $user_data = $result->fetch_assoc();
     	}
 
 
@@ -64,17 +81,24 @@ class checkout
         }
 
 		// message
-		$mensaje = "Hola, me gustaria ordernar:\n\n";
+		$mensaje = "(DEMO)  Buen día, me gustaría ordenar:\n\n";
 		$total = 0;
 
 		foreach ($cart as $row) {
             $subtotal = $row['quantity'] * $row['price'];
             $total += $subtotal;
 
-            $mensaje .= "- {$row['name']} x{$row['quantity']}\n";
+            $mensaje .= "- {$row['name']} x{$row['quantity']} ($" . number_format($subtotal, 0) . ")\n";
 		}
 
 		$mensaje .= "\nTotal: $" . number_format($total, 0);
+
+        if (!empty($user_data)) {
+
+            $mensaje .= "\n\nMi nombre es: {$user_data['name']}";
+            $mensaje .= "\nMi dirección para el envío es: {$user_data['address']}";
+            $mensaje .= "\nY mi número de contacto es: {$user_data['phone']}";
+        }
 
 		$telefono = $phone;
 

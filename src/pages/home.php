@@ -32,10 +32,9 @@
 	    <?php include __DIR__ . '/components/horizontal-banner2.php'; ?>
 	  </div>
 	</div>
-		
+
 
 	<main>
-
 		<h1 class="title fadeInUp-animation">Catálogo</h1>
 
 		<div class="categories fadeInUp-animation">
@@ -50,11 +49,8 @@
 
 	</main>
 
-	<footer class="footer pulse-animation">
-		<a href="/" target="_blank" id="whatsapp">
-			<img src="/assets/img/whatsapp.jpeg" alt="whtspp">
-		</a>
-	</footer>
+	
+	<?php include __DIR__ . '/components/whatsapp.php'; ?>
 
 	<?php include __DIR__ . '/components/footer.php'; ?>
 

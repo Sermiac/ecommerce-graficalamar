@@ -42,22 +42,6 @@ cartBtn.addEventListener("click", () => {
   addToCart(productId, qty);
 });
 
-async function initWhatsapp() {
-  const whatsappBtn = document.getElementById("whatsapp");
-  if (!whatsappBtn) return;
-
-  const res = await fetch("/api/contact.php");
-  const data = await res.json();
-
-  let url =
-    data.url +
-    "?text=Hola, quiero saber mas sobre los productos personalizados";
-
-  whatsappBtn.href = url;
-}
-
-initWhatsapp();
-
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
