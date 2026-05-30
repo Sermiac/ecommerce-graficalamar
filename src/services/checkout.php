@@ -19,7 +19,6 @@ class checkout
         $user_data = [];
         if (!empty($_SESSION['cart'])) {
             $items = $_SESSION['cart'];
-
             foreach ($items as $productId => $qty) {
                 $stmt = $conn->prepare("
                     SELECT * FROM products WHERE id = ?

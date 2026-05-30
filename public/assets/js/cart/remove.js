@@ -7,6 +7,8 @@ export async function removeFromCart(id, qty = 1) {
     const data = await response.json();
     if (!data.success) {
       throw new Error(data.error);
+    } else {
+      return { success: true };
     }
   } catch (err) {
     console.log("Error: ", err);
