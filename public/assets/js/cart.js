@@ -50,7 +50,9 @@ async function calTotal() {
       const totalContainer = document.getElementById("cart_total");
       totalContainer.innerHTML = `
         <div class="total-info">
-          <h3>Total del pedido: $${Number(totalData.total).toLocaleString("es-CO")}</h3>
+          <h3>Total del pedido:
+            <span class="total"> $${Number(totalData.total).toLocaleString("es-CO")}</span>
+          </h3>
         </div>
       `;
 
@@ -90,7 +92,7 @@ async function main() {
                     </p>
                     <p>
                       Total: 
-                      <span class="total">$${Number(p.subtotal).toLocaleString("es-CO")}
+                      <span class="subTotal">$${Number(p.subtotal).toLocaleString("es-CO")}
                     </p>
 
                   <button class="removeBtn card-button" data-id="${p.product_id}" data-qty="${p.quantity}">Quitar del carrito</button>
@@ -135,14 +137,23 @@ document.addEventListener("click", async (e) => {
       if (res.success) {
         const card = decreaseBtn.closest(".product-card");
         const qtyEl = card.querySelector(".quantity");
-        const totalEl = card.querySelector(".total");
+        const totalEl = document
+          .getElementById("cart_total")
+          .querySelector(".total");
+        const subTotalEl = card.querySelector(".subTotal");
 
         let currentQty = parseInt(qtyEl.textContent);
 
         let subTotal = parseFloat(
+          subTotalEl.textContent.replaceAll("$", "").replaceAll(".", ""),
+        );
+        let productValue = subTotal / currentQty;
+        subTotal = subTotal - productValue;
+
+        let total = parseFloat(
           totalEl.textContent.replaceAll("$", "").replaceAll(".", ""),
         );
-        subTotal = subTotal - subTotal / currentQty;
+        total = total - productValue;
 
         currentQty--;
 
@@ -150,9 +161,10 @@ document.addEventListener("click", async (e) => {
           card.remove();
           calTotal();
         } else {
-          totalEl.textContent = "$" + Number(subTotal).toLocaleString("es-CO");
+          subTotalEl.textContent =
+            "$" + Number(subTotal).toLocaleString("es-CO");
           qtyEl.textContent = currentQty;
-          calTotal();
+          totalEl.textContent = "$" + Number(total).toLocaleString("es-CO");
         }
       }
     } catch (err) {
